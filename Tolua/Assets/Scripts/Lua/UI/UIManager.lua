@@ -25,8 +25,8 @@ function UIManager:OpenPanel(style,complete)
       panel.gameobject:SetActive(true)
       panel:Open()
       if complete then
-    complete(panel)
-  end
+         complete(panel)
+      end
   else
        local panelConfig = UIConfig[style]
        local panelGo = nil

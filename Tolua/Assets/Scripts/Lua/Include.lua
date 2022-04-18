@@ -2,7 +2,7 @@ require("Namespace")
 require("Object")
 require("UnityBehaviour")
 require("Singleton")
-
+require("EventCeneter")
 require("Module/PlayerData")
 
 --UI

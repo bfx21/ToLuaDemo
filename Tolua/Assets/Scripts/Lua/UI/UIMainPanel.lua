@@ -14,6 +14,9 @@ function UIMainPanel:InitPanel()
     self:AddBtnEvent(_cacheType.BtnRole,function() self:ClickRoleBtn() end)
 end
 
+function UIMainPanel:Start()
+    print("UIMainPanel Start")
+end
 
 function UIMainPanel:Open()
     self:refreshUI(PlayerData)

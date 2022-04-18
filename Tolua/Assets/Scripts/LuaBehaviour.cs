@@ -20,7 +20,6 @@ public class LuaBehaviour : MonoBehaviour
 
     private void OnEnable()
     {
-        
         OnEnableAction?.Invoke();
     }
 
