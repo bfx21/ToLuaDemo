@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourcesManager 
+public delegate void LoadResComplete(Object asset);
+
+public class ResourcesManager :MonoSingle<ResourcesManager>
 {
-    public static Object Load(string path,System.Type type)
+    public Object Load(string path,System.Type type)
     {
         Object obj =  Resources.Load(path,type);
         
@@ -14,5 +16,19 @@ public class ResourcesManager
         }
 
         return obj;
-    } 
+    }
+
+    public void LoadAsync(string path,System.Type type,LoadResComplete complete = null)
+    {
+        StartCoroutine(LoadAsyncHandler(path,type,complete));
+    }
+
+    private IEnumerator LoadAsyncHandler(string path,System.Type type,LoadResComplete complete)
+    {
+        ResourceRequest request =  Resources.LoadAsync(path,type);
+        
+        yield return request;
+
+        complete?.Invoke(request.asset);
+    }
 }

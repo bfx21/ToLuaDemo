@@ -6,29 +6,60 @@ public class ResourcesManagerWrap
 {
 	public static void Register(LuaState L)
 	{
-		L.BeginClass(typeof(ResourcesManager), typeof(System.Object));
+		L.BeginClass(typeof(ResourcesManager), typeof(MonoSingle<ResourcesManager>));
 		L.RegFunction("Load", Load);
-		L.RegFunction("New", _CreateResourcesManager);
+		L.RegFunction("LoadAsync", LoadAsync);
+		L.RegFunction("__eq", op_Equality);
 		L.RegFunction("__tostring", ToLua.op_ToString);
 		L.EndClass();
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int _CreateResourcesManager(IntPtr L)
+	static int Load(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 3);
+			ResourcesManager obj = (ResourcesManager)ToLua.CheckObject<ResourcesManager>(L, 1);
+			string arg0 = ToLua.CheckString(L, 2);
+			System.Type arg1 = ToLua.CheckMonoType(L, 3);
+			UnityEngine.Object o = obj.Load(arg0, arg1);
+			ToLua.Push(L, o);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int LoadAsync(IntPtr L)
 	{
 		try
 		{
 			int count = LuaDLL.lua_gettop(L);
 
-			if (count == 0)
+			if (count == 3)
 			{
-				ResourcesManager obj = new ResourcesManager();
-				ToLua.PushObject(L, obj);
-				return 1;
+				ResourcesManager obj = (ResourcesManager)ToLua.CheckObject<ResourcesManager>(L, 1);
+				string arg0 = ToLua.CheckString(L, 2);
+				System.Type arg1 = ToLua.CheckMonoType(L, 3);
+				obj.LoadAsync(arg0, arg1);
+				return 0;
+			}
+			else if (count == 4)
+			{
+				ResourcesManager obj = (ResourcesManager)ToLua.CheckObject<ResourcesManager>(L, 1);
+				string arg0 = ToLua.CheckString(L, 2);
+				System.Type arg1 = ToLua.CheckMonoType(L, 3);
+				LoadResComplete arg2 = (LoadResComplete)ToLua.CheckDelegate<LoadResComplete>(L, 4);
+				obj.LoadAsync(arg0, arg1, arg2);
+				return 0;
 			}
 			else
 			{
-				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: ResourcesManager.New");
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: ResourcesManager.LoadAsync");
 			}
 		}
 		catch (Exception e)
@@ -38,15 +69,15 @@ public class ResourcesManagerWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int Load(IntPtr L)
+	static int op_Equality(IntPtr L)
 	{
 		try
 		{
 			ToLua.CheckArgsCount(L, 2);
-			string arg0 = ToLua.CheckString(L, 1);
-			System.Type arg1 = ToLua.CheckMonoType(L, 2);
-			UnityEngine.Object o = ResourcesManager.Load(arg0, arg1);
-			ToLua.Push(L, o);
+			UnityEngine.Object arg0 = (UnityEngine.Object)ToLua.ToObject(L, 1);
+			UnityEngine.Object arg1 = (UnityEngine.Object)ToLua.ToObject(L, 2);
+			bool o = arg0 == arg1;
+			LuaDLL.lua_pushboolean(L, o);
 			return 1;
 		}
 		catch (Exception e)

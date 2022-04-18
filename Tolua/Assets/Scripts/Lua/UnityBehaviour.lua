@@ -1,4 +1,4 @@
-Object:sub("UnityBehaviour")
+Object:Sub("UnityBehaviour")
 
 function UnityBehaviour:InitBehaviour(go)
     self.gameObject = go
@@ -58,7 +58,7 @@ end
 function UnityBehaviour:FindChild(childName)
     local child =  Tools.FindChildObject(self.transform,childName)   
     if child == nil then
-        Debug.Log("找不到该子物体："..childName)
+        print("找不到该子物体："..childName)
     end
 
     return child
@@ -66,7 +66,7 @@ end
 
 function UnityBehaviour:FindChildComponent(childName,type)
     local child = self:FindChild(childName)
-    return child:GetComponent(typeof(type))
+    return child:GetComponent(type)
  end
 
 function UnityBehaviour:Destroy()

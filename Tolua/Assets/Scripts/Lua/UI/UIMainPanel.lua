@@ -1,23 +1,34 @@
-BasePanel:sub("UIMainPanel")
+BasePanel:Sub("UIMainPanel")
 
-CacheType =
+local _cacheType =
 {
-   RoleBtn = "RoteBtn" ,
+   BtnRole = "BtnRole" ,
+   TxtName = "TxtName",
+   TxtLev = "TxtLev",
+   TxtDiamond = "TxtDiamond",
+   TxtGold = "TxtGold",
+   TxtPower = "TxtPower",
 }
 
-function UIMainPanel:OnEnable()
-    self:AddBtnEvent(CacheType.RoleBtn,function() self:ClickRoleBtn() end)
+function UIMainPanel:InitPanel()
+    self:AddBtnEvent(_cacheType.BtnRole,function() self:ClickRoleBtn() end)
 end
+
 
 function UIMainPanel:Open()
+    self:refreshUI(PlayerData)
 end
 
-function UIMainPanel:RefreshUI(data)
-    
+function UIMainPanel:refreshUI(data)
+    self:SetText(_cacheType.TxtDiamond,data.diamond)
+    self:SetText(_cacheType.TxtGold,data.gold)
+    self:SetText(_cacheType.TxtName,data.name)
+    self:SetText(_cacheType.TxtPower,data.power)
 end
+
 
 function UIMainPanel:ClickRoleBtn()
-
+    UIManager.GetSingleton():OpenPanel(UIStyle.Role)
 end
 
 

@@ -3,8 +3,15 @@
 function main()
     print("执行Lua函数入口")
     require("Include")
-    
-    --UIManager.GetSingleton():Init()
+    Test()
+
+    UIManager.GetSingleton():InitManager()
+    UIManager.GetSingleton():OpenPanel(UIStyle.Main)
+end
+
+function Test()
+
 end
 
 main()
+

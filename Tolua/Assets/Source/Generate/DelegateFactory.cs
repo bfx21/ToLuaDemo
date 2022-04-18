@@ -23,6 +23,8 @@ public class DelegateFactory
 		dict.Add(typeof(System.Action<int>), factory.System_Action_int);
 		dict.Add(typeof(System.Comparison<int>), factory.System_Comparison_int);
 		dict.Add(typeof(System.Func<int,int>), factory.System_Func_int_int);
+		dict.Add(typeof(LoadResComplete), factory.LoadResComplete);
+		dict.Add(typeof(LuaBehaviourAction), factory.LuaBehaviourAction);
 		dict.Add(typeof(UnityEngine.Camera.CameraCallback), factory.UnityEngine_Camera_CameraCallback);
 		dict.Add(typeof(UnityEngine.Application.AdvertisingIdentifierCallback), factory.UnityEngine_Application_AdvertisingIdentifierCallback);
 		dict.Add(typeof(UnityEngine.Application.LowMemoryCallback), factory.UnityEngine_Application_LowMemoryCallback);
@@ -40,6 +42,8 @@ public class DelegateFactory
 		DelegateTraits<System.Action<int>>.Init(factory.System_Action_int);
 		DelegateTraits<System.Comparison<int>>.Init(factory.System_Comparison_int);
 		DelegateTraits<System.Func<int,int>>.Init(factory.System_Func_int_int);
+		DelegateTraits<LoadResComplete>.Init(factory.LoadResComplete);
+		DelegateTraits<LuaBehaviourAction>.Init(factory.LuaBehaviourAction);
 		DelegateTraits<UnityEngine.Camera.CameraCallback>.Init(factory.UnityEngine_Camera_CameraCallback);
 		DelegateTraits<UnityEngine.Application.AdvertisingIdentifierCallback>.Init(factory.UnityEngine_Application_AdvertisingIdentifierCallback);
 		DelegateTraits<UnityEngine.Application.LowMemoryCallback>.Init(factory.UnityEngine_Application_LowMemoryCallback);
@@ -57,6 +61,8 @@ public class DelegateFactory
 		TypeTraits<System.Action<int>>.Init(factory.Check_System_Action_int);
 		TypeTraits<System.Comparison<int>>.Init(factory.Check_System_Comparison_int);
 		TypeTraits<System.Func<int,int>>.Init(factory.Check_System_Func_int_int);
+		TypeTraits<LoadResComplete>.Init(factory.Check_LoadResComplete);
+		TypeTraits<LuaBehaviourAction>.Init(factory.Check_LuaBehaviourAction);
 		TypeTraits<UnityEngine.Camera.CameraCallback>.Init(factory.Check_UnityEngine_Camera_CameraCallback);
 		TypeTraits<UnityEngine.Application.AdvertisingIdentifierCallback>.Init(factory.Check_UnityEngine_Application_AdvertisingIdentifierCallback);
 		TypeTraits<UnityEngine.Application.LowMemoryCallback>.Init(factory.Check_UnityEngine_Application_LowMemoryCallback);
@@ -74,6 +80,8 @@ public class DelegateFactory
 		StackTraits<System.Action<int>>.Push = factory.Push_System_Action_int;
 		StackTraits<System.Comparison<int>>.Push = factory.Push_System_Comparison_int;
 		StackTraits<System.Func<int,int>>.Push = factory.Push_System_Func_int_int;
+		StackTraits<LoadResComplete>.Push = factory.Push_LoadResComplete;
+		StackTraits<LuaBehaviourAction>.Push = factory.Push_LuaBehaviourAction;
 		StackTraits<UnityEngine.Camera.CameraCallback>.Push = factory.Push_UnityEngine_Camera_CameraCallback;
 		StackTraits<UnityEngine.Application.AdvertisingIdentifierCallback>.Push = factory.Push_UnityEngine_Application_AdvertisingIdentifierCallback;
 		StackTraits<UnityEngine.Application.LowMemoryCallback>.Push = factory.Push_UnityEngine_Application_LowMemoryCallback;
@@ -539,6 +547,116 @@ public class DelegateFactory
 	}
 
 	void Push_System_Func_int_int(IntPtr L, System.Func<int,int> o)
+	{
+		ToLua.Push(L, o);
+	}
+
+	class LoadResComplete_Event : LuaDelegate
+	{
+		public LoadResComplete_Event(LuaFunction func) : base(func) { }
+		public LoadResComplete_Event(LuaFunction func, LuaTable self) : base(func, self) { }
+
+		public void Call(UnityEngine.Object param0)
+		{
+			func.BeginPCall();
+			func.Push(param0);
+			func.PCall();
+			func.EndPCall();
+		}
+
+		public void CallWithSelf(UnityEngine.Object param0)
+		{
+			func.BeginPCall();
+			func.Push(self);
+			func.Push(param0);
+			func.PCall();
+			func.EndPCall();
+		}
+	}
+
+	public LoadResComplete LoadResComplete(LuaFunction func, LuaTable self, bool flag)
+	{
+		if (func == null)
+		{
+			LoadResComplete fn = delegate(UnityEngine.Object param0) { };
+			return fn;
+		}
+
+		if(!flag)
+		{
+			LoadResComplete_Event target = new LoadResComplete_Event(func);
+			LoadResComplete d = target.Call;
+			target.method = d.Method;
+			return d;
+		}
+		else
+		{
+			LoadResComplete_Event target = new LoadResComplete_Event(func, self);
+			LoadResComplete d = target.CallWithSelf;
+			target.method = d.Method;
+			return d;
+		}
+	}
+
+	bool Check_LoadResComplete(IntPtr L, int pos)
+	{
+		return TypeChecker.CheckDelegateType(typeof(LoadResComplete), L, pos);
+	}
+
+	void Push_LoadResComplete(IntPtr L, LoadResComplete o)
+	{
+		ToLua.Push(L, o);
+	}
+
+	class LuaBehaviourAction_Event : LuaDelegate
+	{
+		public LuaBehaviourAction_Event(LuaFunction func) : base(func) { }
+		public LuaBehaviourAction_Event(LuaFunction func, LuaTable self) : base(func, self) { }
+
+		public void Call()
+		{
+			func.Call();
+		}
+
+		public void CallWithSelf()
+		{
+			func.BeginPCall();
+			func.Push(self);
+			func.PCall();
+			func.EndPCall();
+		}
+	}
+
+	public LuaBehaviourAction LuaBehaviourAction(LuaFunction func, LuaTable self, bool flag)
+	{
+		if (func == null)
+		{
+			LuaBehaviourAction fn = delegate() { };
+			return fn;
+		}
+
+		if(!flag)
+		{
+			LuaBehaviourAction_Event target = new LuaBehaviourAction_Event(func);
+			LuaBehaviourAction d = target.Call;
+			target.method = d.Method;
+			return d;
+		}
+		else
+		{
+			LuaBehaviourAction_Event target = new LuaBehaviourAction_Event(func, self);
+			LuaBehaviourAction d = target.CallWithSelf;
+			target.method = d.Method;
+			return d;
+		}
+	}
+
+	bool Check_LuaBehaviourAction(IntPtr L, int pos)
+	{
+		return TypeChecker.CheckDelegateType(typeof(LuaBehaviourAction), L, pos);
+	}
+
+	void Push_LuaBehaviourAction(IntPtr L, LuaBehaviourAction o)
 	{
 		ToLua.Push(L, o);
 	}

@@ -16,7 +16,6 @@ public class LuaScriptLoad : LuaFileUtils
             return null;
          }
         
-        Debug.Log("加载lua脚本成功：" + fileName);
         return File.ReadAllBytes(path);
      }
 }

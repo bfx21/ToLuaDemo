@@ -1,16 +1,18 @@
 Object ={}
 
-function Object:new()
+function Object:New()
     local obj = {}
-    obj._index = self
+    self.__index = self
+
     setmetatable(obj, self)
     return obj
 end
 
-function Object:sub(className)
+function Object:Sub(className)
     _G[className] = {}
     local obj = _G[className]
+
     obj.base = self
-    obj._index = self
+    self.__index = self
     setmetatable(obj,self)
 end

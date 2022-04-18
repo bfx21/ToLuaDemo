@@ -1,4 +1,4 @@
-UnityBehaviour:sub("BasePanel")
+UnityBehaviour:Sub("BasePanel")
 
 function BasePanel:Init()
      self.controlCache ={}
@@ -17,7 +17,10 @@ function BasePanel:Close()
 end
 
 function BasePanel:GetControl(name,type)
-    local controlName = table.concat( name, "_", type.Name)
+    local str = {}
+    str[1] = name
+    str[2] = type:ToString()
+    local controlName = table.concat( str, "_")
 
     if self.controlCache[controlName] == nil then
        local control = self:FindChildComponent(name,type)
@@ -42,6 +45,12 @@ function BasePanel:SetText(name,content)
    text.text = content
 end
 
+function BasePanel:GetText(name)
+    local text = self:GetControl(name,typeof(Text))
+    return text.text
+end
+
 function BasePanel:AddBtnEvent(name,event)
-    self:GetControl(name,typeof(Button)).onClick:AddListener(event)
+    local button = self:GetControl(name,typeof(Button))
+    button.onClick:AddListener(event)
 end

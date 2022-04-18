@@ -60,8 +60,14 @@ public static class CustomSettings
         _GT(typeof(LuaInjectionStation)),
         _GT(typeof(InjectType)),
         _GT(typeof(Debugger)).SetNameSpace(null),
+        _GT(typeof(BaseFramework.Tools)),
+        _GT(typeof(MonoSingle<ResourcesManager>)),
         _GT(typeof(ResourcesManager)),
-        _GT(typeof(UnityEngine.UI.Image)),          
+        _GT(typeof(LuaBehaviour)),
+        _GT(typeof(UnityEngine.UI.Image)),
+        _GT(typeof(UnityEngine.UI.Button)),
+        _GT(typeof(UnityEngine.UI.Text)),
+        _GT(typeof(UnityEngine.UI.Button.ButtonClickedEvent)),          
 
 #if USING_DOTWEENING
         _GT(typeof(DG.Tweening.DOTween)),

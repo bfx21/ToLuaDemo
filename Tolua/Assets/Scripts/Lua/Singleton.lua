@@ -1,10 +1,10 @@
-UnityBehaviour:sub("Singleton")
+UnityBehaviour:Sub("Singleton")
 
 function Singleton:Class(name)
-    self:sub(name)
+    self:Sub(name)
     _G[name].GetSingleton = function ()
         if _G[name].instance == nil then
-            _G[name].instance = _G[name]:new()
+            _G[name].instance = _G[name]:New()
             local go = GameObject(name)
             --go.transform.parent = System.transform
             _G[name].instance:InitBehaviour(go) 
