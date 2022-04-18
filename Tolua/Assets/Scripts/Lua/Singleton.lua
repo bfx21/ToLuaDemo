@@ -1,7 +1,7 @@
 UnityBehaviour:sub("Singleton")
 
 function Singleton:Class(name)
-    self:SubClass(name)
+    self:sub(name)
     _G[name].GetSingleton = function ()
         if _G[name].instance == nil then
             _G[name].instance = _G[name]:new()

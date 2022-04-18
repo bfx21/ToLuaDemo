@@ -59,7 +59,9 @@ public static class CustomSettings
                         
         _GT(typeof(LuaInjectionStation)),
         _GT(typeof(InjectType)),
-        _GT(typeof(Debugger)).SetNameSpace(null),          
+        _GT(typeof(Debugger)).SetNameSpace(null),
+        _GT(typeof(ResourcesManager)),
+        _GT(typeof(UnityEngine.UI.Image)),          
 
 #if USING_DOTWEENING
         _GT(typeof(DG.Tweening.DOTween)),
@@ -146,7 +148,7 @@ public static class CustomSettings
 
         _GT(typeof(QualitySettings)),
         _GT(typeof(RenderSettings)),                                                   
-        _GT(typeof(SkinWeights)),           
+       // _GT(typeof(BlendWeights)),           
         _GT(typeof(RenderTexture)),
         _GT(typeof(Resources)),     
         _GT(typeof(LuaProfiler)),
@@ -171,7 +173,7 @@ public static class CustomSettings
         typeof(AnimationClip),
         typeof(AnimationState),
 
-        typeof(SkinWeights),
+        //typeof(BlendWeights),
         typeof(RenderTexture),
         typeof(Rigidbody),
     };

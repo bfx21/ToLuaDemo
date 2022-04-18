@@ -12,10 +12,11 @@ public class LuaScriptLoad : LuaFileUtils
            
          if(File.Exists(path) == false)
          {
-            Debug.Log("¸ÃÂ·¾¶´íÎó£º" + path);
+            Debug.Log("æ— æ³•æ‰¾åˆ°è¯¥è·¯å¾„" + path);
             return null;
          }
-
-        return null;
+        
+        Debug.Log("åŠ è½½luaè„šæœ¬æˆåŠŸï¼š" + fileName);
+        return File.ReadAllBytes(path);
      }
 }
