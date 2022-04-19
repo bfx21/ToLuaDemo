@@ -14,7 +14,7 @@ public class GameStart : MonoBehaviour
         LuaBinder.Bind(luaState);
 
         LuaScriptLoad luaLoad = new LuaScriptLoad();
-        luaState.DoFile("LuaMain");
+        luaState.DoFile("lua_main");
     }
 
     // Update is called once per frame
