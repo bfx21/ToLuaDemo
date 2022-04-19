@@ -4,7 +4,7 @@ function UnityBehaviour:InitBehaviour(go)
     self.gameObject = go
     self.transform = go.transform
     local behaviour = self.gameObject:AddComponent(typeof(LuaBehaviour))
-
+     print("InitBehaviour")
     if self.Init ~= nil then
         self:Init()
     end

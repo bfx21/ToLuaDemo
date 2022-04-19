@@ -58,5 +58,5 @@ function RoleView:refreshUI(data)
 end
 
 function RoleView:ClickCloseBtn()
-    UIManager.GetSingleton():CloseView(UIStyle.Role)
+    UIManager.GetSingleton():CloseView(UIStyle.ROLE)
 end

@@ -6,11 +6,12 @@ function main()
     Test()
 
     UIManager.GetSingleton():InitManager()
-    UIManager.GetSingleton():OpenView(UIStyle.Main)
+    UIManager.GetSingleton():OpenView(UIStyle.MAIN)
 end
 
 function Test()
 
+    
 end
 
 main()

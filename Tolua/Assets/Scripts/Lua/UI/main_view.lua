@@ -38,7 +38,7 @@ end
 
 
 function MainView:ClickRoleBtn()
-    UIManager.GetSingleton():OpenView(UIStyle.Role)
+    UIManager.GetSingleton():OpenView(UIStyle.ROLE)
 end
 
 

@@ -67,7 +67,7 @@ public static class CustomSettings
         _GT(typeof(UnityEngine.UI.Image)),
         _GT(typeof(UnityEngine.UI.Button)),
         _GT(typeof(UnityEngine.UI.Text)),
-        _GT(typeof(UnityEngine.UI.Button.ButtonClickedEvent)),          
+        _GT(typeof(UnityEngine.UI.Button.ButtonClickedEvent)),         
 
 #if USING_DOTWEENING
         _GT(typeof(DG.Tweening.DOTween)),

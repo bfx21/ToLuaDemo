@@ -20,35 +20,35 @@ function UIManager:InitManager()
 end
 
 function UIManager:OpenView(style,complete)
-  local view = self:GetView(style)
-  if view ~= nil then
-      view.gameobject:SetActive(true)
-      view:Open()
-      if complete then
-         complete(view)
-      end
-  else
-       local view_config = UIConfig[style]
-       local view_go = nil
-       if view_config.async then
-          local load_complete_handler = function (asset)
-              self:createView(view_config,asset)
-              if complete then
-                  complete(self:GetView(view_config.id))
-              end
-          end   
+    local view = self:GetView(style)
+    if view ~= nil then
+        view.gameobject:SetActive(true)
+        view:Open()
+        if complete then
+            complete(view)
+        end
+    else
+        local view_config = UIConfig[style]
+        local view_go = nil
+        if view_config.async then
+            local load_complete_handler = function (asset)
+                self:createView(view_config,asset)
+                if complete then
+                    complete(self:GetView(view_config.id))
+                end
+            end   
 
-          ResourcesManager.Instance:LoadAsync(view_config.path,typeof(GameObject),load_complete_handler)
-       else
-          view_go = ResourcesManager.Instance:Load(view_config.path,typeof(GameObject))
-          self:createView(view_config,view_go)
+            ResourcesManager.Instance:LoadAsync(view_config.path,typeof(GameObject),load_complete_handler)
+        else
+            view_go = ResourcesManager.Instance:Load(view_config.path,typeof(GameObject))
+            self:createView(view_config,view_go)
 
-          if complete then
-              complete(self:Getview(view_config.id))
-          end
-       end
-      
-   end
+            if complete then
+                complete(self:Getview(view_config.id))
+            end
+        end
+        
+    end
 end
 
 function UIManager:CloseView(style)
