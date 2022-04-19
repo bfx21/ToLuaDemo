@@ -2,16 +2,16 @@ BaseView:Sub("MainView")
 
 local _cacheType =
 {
-   BtnRole = "BtnRole" ,
-   TxtName = "TxtName",
-   TxtLev = "TxtLev",
-   TxtDiamond = "TxtDiamond",
-   TxtGold = "TxtGold",
-   TxtPower = "TxtPower",
+   btn_role = "BtnRole" ,
+   txt_name = "TxtName",
+   txt_lev = "TxtLev",
+   txt_diamond = "TxtDiamond",
+   txt_gold = "TxtGold",
+   txt_power = "TxtPower",
 }
 
 function MainView:InitPanel()
-    self:AddBtnEvent(_cacheType.BtnRole,function() self:ClickRoleBtn() end)
+    self:AddBtnEvent(_cacheType.btn_role,function() self:ClickRoleBtn() end)
 end
 
 function MainView:Start()
@@ -30,10 +30,10 @@ function MainView:Close()
 end
 
 function MainView:refreshUI(data)
-    self:SetText(_cacheType.TxtDiamond,data.diamond)
-    self:SetText(_cacheType.TxtGold,data.gold)
-    self:SetText(_cacheType.TxtName,data.name)
-    self:SetText(_cacheType.TxtPower,data.power)
+    self:SetText(_cacheType.txt_diamond,data.diamond)
+    self:SetText(_cacheType.txt_gold,data.gold)
+    self:SetText(_cacheType.txt_name,data.name)
+    self:SetText(_cacheType.txt_power,data.power)
 end
 
 
