@@ -46,15 +46,15 @@ function RoleView:ClickUpLevelBtn()
 end
 
 function RoleView:refreshUI(data)
-     self:SetText(_cacheType.txt_attack,data.attack)
-     self:SetText(_cacheType.txt_hp,data.hp)
-     self:SetText(_cacheType.txt_defence,data.defence)
-     self:SetText(_cacheType.txt_crit,data.crit)
-     self:SetText(_cacheType.txt_miss,data.miss)
-     self:SetText(_cacheType.txt_luck,data.luck)
+    self:SetText(_cacheType.txt_attack,data.attack)
+    self:SetText(_cacheType.txt_hp,data.hp)
+    self:SetText(_cacheType.txt_defence,data.defence)
+    self:SetText(_cacheType.txt_crit,data.crit)
+    self:SetText(_cacheType.txt_miss,data.miss)
+    self:SetText(_cacheType.txt_luck,data.luck)
 
-     local level_str = table.concat({[1] = "Lv.",[2] = data.level})
-     self:SetText(_cacheType.txt_level,level_str)
+    local level_str = table.concat({[1] = "Lv.",[2] = data.level})
+    self:SetText(_cacheType.txt_level,level_str)
 end
 
 function RoleView:ClickCloseBtn()

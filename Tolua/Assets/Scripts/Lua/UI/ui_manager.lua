@@ -32,7 +32,7 @@ function UIManager:OpenView(style,complete)
         local view_go = nil
         if view_config.async then
             local load_complete_handler = function (asset)
-                self:createView(view_config,asset)
+                self:loadView(view_config,asset)
                 if complete then
                     complete(self:GetView(view_config.id))
                 end
@@ -41,7 +41,7 @@ function UIManager:OpenView(style,complete)
             ResourcesManager.Instance:LoadAsync(view_config.path,typeof(GameObject),load_complete_handler)
         else
             view_go = ResourcesManager.Instance:Load(view_config.path,typeof(GameObject))
-            self:createView(view_config,view_go)
+            self:loadView(view_config,view_go)
 
             if complete then
                 complete(self:Getview(view_config.id))
@@ -59,21 +59,20 @@ function UIManager:CloseView(style)
         if UIConfig[style].cache then
             view.gameObject:SetActive(false)
         else
-            GameObject.Destroy(view.gameObject)
-            self.views[style] = nil
+            self:unloadView(style)
         end
     end
 end
 
-function UIManager:GetView(sytle)
-    return self.views[sytle]
+function UIManager:GetView(style)
+    return self.views[style]
 end
 
 function UIManager:getLayer(layer_id)
     return self.layers[layer_id]
 end
 
-function  UIManager:createView(view_config,view_go)
+function UIManager:loadView(view_config,view_go)
     local view = view_config.ui_class:New()
     view:InitBehaviour(view_go)
     view:Open()
@@ -84,4 +83,11 @@ function  UIManager:createView(view_config,view_go)
     view_tran.localPosition = Vector3.zero
     view_tran.localScale = Vector3.one
 
+end
+
+function UIManager:unloadView(style)
+    local view = self:GetView(style)
+    GameObject.Destroy(view.gameObject)
+    self.views[style] = nil
+    Resources.UnloadUnusedAssets()
 end
