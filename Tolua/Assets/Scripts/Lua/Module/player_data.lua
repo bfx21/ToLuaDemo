@@ -26,9 +26,9 @@ function PlayerData.LevelUp()
      PlayerData.level = PlayerData.level + 1
      PlayerData.diamond = PlayerData.diamond - 15
 
-     EventCenter.Trigger(EventType.ROLE_UP_LEVEL,PlayerData)
+     EventManager:GetSingleton():Trigger(EventType.ROLE_UP_LEVEL,PlayerData)
 end
 
 function PlayerData.RefreshData()
-    EventCenter.Trigger(EventType.ROLE_UP_LEVEL,PlayerData)
+     EventManager:GetSingleton():Trigger(EventType.ROLE_UP_LEVEL,PlayerData)
 end

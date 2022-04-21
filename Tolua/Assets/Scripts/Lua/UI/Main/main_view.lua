@@ -20,13 +20,13 @@ end
 
 function MainView:Open()
     self.refresh_ui = function(data) self:refreshUI(data) end
-    EventCenter.AddListener(EventType.ROLE_UP_LEVEL,self.refresh_ui)
+    EventManager:GetSingleton():AddListener(EventType.ROLE_UP_LEVEL,self.refresh_ui)
 
     PlayerData.RefreshData()
 end
 
 function MainView:Close()
-    EventCenter.RemoveListener(EventType.ROLE_UP_LEVEL,self.refresh_ui)
+    EventManager:GetSingleton():RemoveListener(EventType.ROLE_UP_LEVEL,self.refresh_ui)
 end
 
 function MainView:refreshUI(data)
