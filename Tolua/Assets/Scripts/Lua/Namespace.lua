@@ -1,6 +1,7 @@
 GameObject = UnityEngine.GameObject
 Transform = UnityEngine.Transform
 Resources = UnityEngine.Resources
+Animation = UnityEngine.Animation
 
 --UI
 UI = UnityEngine.UI

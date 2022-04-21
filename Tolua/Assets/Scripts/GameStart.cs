@@ -13,6 +13,8 @@ public class GameStart : MonoBehaviour
 
         luaState.Start();
         LuaBinder.Bind(luaState);
+        LuaLooper luaLooper = gameObject.AddComponent<LuaLooper>();
+        luaLooper.luaState = luaState;
 
         LuaScriptLoad luaLoad = new LuaScriptLoad();
         luaState.DoFile("lua_main");

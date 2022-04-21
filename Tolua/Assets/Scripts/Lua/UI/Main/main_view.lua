@@ -2,6 +2,7 @@ BaseView:Sub("MainView")
 
 local _cacheType =
 {
+   btn_test = "BtnTest",
    btn_role = "BtnRole" ,
    txt_name = "TxtName",
    txt_lev = "TxtLev",
@@ -12,6 +13,7 @@ local _cacheType =
 
 function MainView:InitPanel()
     self:AddBtnEvent(_cacheType.btn_role,function() self:ClickRoleBtn() end)
+    self:AddBtnEvent(_cacheType.btn_test,function() self:ClickTestBtn() end)
 end
 
 function MainView:Start()
@@ -36,9 +38,14 @@ function MainView:refreshUI(data)
     self:SetText(_cacheType.txt_power,data.power)
 end
 
-
 function MainView:ClickRoleBtn()
     UIManager.GetSingleton():OpenView(UIStyle.ROLE)
 end
 
+--测试Tips功能
+function MainView:ClickTestBtn()
+    UIManager.GetSingleton():OpenView(UIStyle.TIPS,function(view) 
+       view:Show("测试游戏提示信息功能")
+    end)
+end
 

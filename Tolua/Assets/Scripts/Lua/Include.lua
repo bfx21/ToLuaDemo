@@ -7,10 +7,12 @@ require("Common/unity_behaviour")
 require("Common/singleton")
 require("Common/event_type")
 require("Common/event_manager")
+require("Common/queue")
 
 --UI
 require("UI/Common/base_view")
 require("UI/Common/ui_manager")
 require("UI/Main/main_view")
 require("UI/Role/role_view")
+require("UI/tips_view")
 require("UI/Common/ui_config")

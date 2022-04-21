@@ -8,6 +8,7 @@ public class BaseFramework_ToolsWrap
 	{
 		L.BeginStaticLibs("Tools");
 		L.RegFunction("FindChildObject", FindChildObject);
+		L.RegFunction("FindChildComponent", FindChildComponent);
 		L.RegFunction("RandomSplit", RandomSplit);
 		L.RegFunction("FindFilePathIsSuffix", FindFilePathIsSuffix);
 		L.RegFunction("FindFilePathNoSuffix", FindFilePathNoSuffix);
@@ -32,6 +33,25 @@ public class BaseFramework_ToolsWrap
 			UnityEngine.Transform arg0 = (UnityEngine.Transform)ToLua.CheckObject<UnityEngine.Transform>(L, 1);
 			string arg1 = ToLua.CheckString(L, 2);
 			UnityEngine.Transform o = BaseFramework.Tools.FindChildObject(arg0, arg1);
+			ToLua.Push(L, o);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int FindChildComponent(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 3);
+			UnityEngine.Transform arg0 = (UnityEngine.Transform)ToLua.CheckObject<UnityEngine.Transform>(L, 1);
+			string arg1 = ToLua.CheckString(L, 2);
+			System.Type arg2 = ToLua.CheckMonoType(L, 3);
+			UnityEngine.Object o = BaseFramework.Tools.FindChildComponent(arg0, arg1, arg2);
 			ToLua.Push(L, o);
 			return 1;
 		}

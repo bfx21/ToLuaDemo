@@ -16,8 +16,8 @@ function Object:Sub(className)
     _G[className] = {}
     local obj = _G[className]
 
-    obj.base = self
     obj._init = false
+    obj.base = self
     self.__index = self
     setmetatable(obj,self)
 end

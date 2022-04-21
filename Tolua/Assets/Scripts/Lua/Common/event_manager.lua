@@ -48,7 +48,6 @@ function EventManager:RemoveListener(event_type,func)
     end
 end
 
-
 function EventManager:Trigger(event_type,data)
     local event_list = self.listener_list[event_type]
     if event_list == nil then

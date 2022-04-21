@@ -40,6 +40,18 @@ namespace BaseFramework
             }
         }
 
+        public static Object FindChildComponent(this Transform parent, string name,System.Type type) 
+        {
+            Transform target = FindChildObject(parent, name);
+            if (target != null)
+                return target.GetComponent(type);
+            else
+            {
+                Debug.Log("错误: 找不到" +name + "组件" );
+                return null;
+            }
+        }
+
         /// <summary>
         /// 将num数随机拆分成n个数
         /// </summary>

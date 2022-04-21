@@ -22,7 +22,7 @@ end
 function UIManager:OpenView(style,complete)
     local view = self:GetView(style)
     if view ~= nil then
-        view.gameobject:SetActive(true)
+        view.gameObject:SetActive(true)
         view:Open()
         if complete then
             complete(view)
@@ -44,7 +44,7 @@ function UIManager:OpenView(style,complete)
             self:loadView(view_config,view_go)
 
             if complete then
-                complete(self:Getview(view_config.id))
+                complete(self:GetView(view_config.id))
             end
         end
         
