@@ -11,7 +11,7 @@ require("Common/event_dispatcher")
 require("Common/queue")
 
 --Module
-require("Module/player_module")
+require("UI/Module/player_module")
 
 --UI
 require("UI/Common/base_view")
