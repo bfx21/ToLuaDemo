@@ -1,4 +1,4 @@
-Singleton:Class("UIManager")
+MonoSingleton:Class("UIManager")
 
 function UIManager:InitManager()
     local canvas = ResourcesManager.Instance:Load("UI/Canvas",typeof(GameObject))

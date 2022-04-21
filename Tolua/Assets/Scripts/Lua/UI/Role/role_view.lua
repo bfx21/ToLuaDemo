@@ -32,17 +32,17 @@ end
 
 function RoleView:Open()
     self.refresh_ui = function(data) self:refreshUI(data) end
-    EventManager:GetSingleton():AddListener(EventType.ROLE_UP_LEVEL,self.refresh_ui)
+    EventManager:GetInstance():AddListener(EventType.ROLE_UP_LEVEL,self.refresh_ui)
 
-    PlayerData.RefreshData()
+    PlayerModule:GetInstance():RefreshData()
 end
 
 function RoleView:Close()
-    EventManager:GetSingleton():RemoveListener(EventType.ROLE_UP_LEVEL,self.refresh_ui)
+    EventManager:GetInstance():RemoveListener(EventType.ROLE_UP_LEVEL,self.refresh_ui)
 end
 
 function RoleView:ClickUpLevelBtn()
-    PlayerData.LevelUp()
+    PlayerModule:GetInstance():LevelUp()
 end
 
 function RoleView:refreshUI(data)

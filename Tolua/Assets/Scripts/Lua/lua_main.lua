@@ -10,12 +10,7 @@ function main()
 end
 
 function Test()
-    local func = function() 
-        coroutine.wait(5)
-        print("测试lua协程")
-    end
-    
-    coroutine.start(func)
+
 end
 
 main()

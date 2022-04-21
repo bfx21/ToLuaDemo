@@ -13,7 +13,7 @@ end
 
 function TipsView:Update()
    if not self.queue:IsEmpty()then
-      self:tips_animtion(self.queue:DeQueue())
+      self:createTips(self.queue:DeQueue())
    end
 end
 
@@ -21,7 +21,7 @@ function TipsView:Show(txt)
    self.queue:EnQueue(txt) 
 end
 
-function TipsView:tips_animtion(txt)
+function TipsView:createTips(txt)
     local prefab = GameObject.Instantiate(self.tips_prefab)
     local text = Tools.FindChildComponent(prefab.transform,_cacheType.Txt_TIPS,typeof(Text))
     text.text = txt
@@ -33,10 +33,10 @@ function TipsView:tips_animtion(txt)
     local animation = prefab:GetComponent(typeof(Animation))
     animation:Play()
     
-    local delay_func = function()  
+    local delay_func = function(tips_prefab)  
         coroutine.wait(1)
-        GameObject.Destroy(prefab)
+        GameObject.Destroy(tips_prefab)
     end
 
-    coroutine.start(delay_func)
+    coroutine.start(delay_func,prefab)
 end

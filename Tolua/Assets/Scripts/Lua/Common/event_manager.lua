@@ -1,18 +1,10 @@
 --处理并发性的事件系统
-Object:Sub("EventManager")
+Singleton:Sub("EventManager")
 
 function EventManager:_init()
     self.listener_list ={}
     self.cache_event ={} --定义用来存储缓存的事件
     self.executing_dic = {} --定义该事件类型是否正在执行
-end
-
-function EventManager:GetSingleton()
-    if self.instance == nil then
-        self.instance = EventManager:New()
-    end
-
-    return self.instance
 end
 
 function EventManager:AddListener(event_type,func)
