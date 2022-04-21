@@ -1,6 +1,24 @@
-Singleton:Sub("PlayerModule")
+EventDispatcher:Sub("PlayerModule")
+
+PlayerModule.EventType = 
+{
+     OPEN_MAIN_VIEW = "ROLE_UP_LEVEL",
+     OPEN_ROLE_VIEW = "OPEN_ROLE_VIEW",
+     CLOSE_ROLE_VIEW = "CLOSE_ROLE_VIEW",
+     REFRESH_VIEW = "REFRESH_VIEW",
+}
+
+function PlayerModule:GetInstance()
+     if self.instance == nil then
+          self.instance = PlayerModule:New()
+     end
+
+     return self.instance
+end
 
 function PlayerModule:_init()
+    self.base:_init()
+
     self.name = "bfx"
     self.gold = 500
     self.diamond = 1000
@@ -28,9 +46,9 @@ function PlayerModule:LevelUp()
      self.level = self.level + 1
      self.diamond = self.diamond - 15
 
-     EventManager:GetInstance():Trigger(EventType.ROLE_UP_LEVEL,self)
+     self:Fire(PlayerModule.EventType.REFRESH_VIEW,self)
 end
 
-function PlayerModule:RefreshData()
-     EventManager:GetInstance():Trigger(EventType.ROLE_UP_LEVEL,self)
+function PlayerModule:RefreshView()
+     self:Fire(PlayerModule.EventType.REFRESH_VIEW,self)
 end

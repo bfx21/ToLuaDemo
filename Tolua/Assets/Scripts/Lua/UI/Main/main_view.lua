@@ -22,13 +22,11 @@ end
 
 function MainView:Open()
     self.refresh_ui = function(data) self:refreshUI(data) end
-    EventManager:GetInstance():AddListener(EventType.ROLE_UP_LEVEL,self.refresh_ui)
-
-    PlayerModule:GetInstance():RefreshData()
+    PlayerModule:GetInstance():Bind(PlayerModule.EventType.REFRESH_VIEW,self.refresh_ui)
 end
 
 function MainView:Close()
-    EventManager:GetInstance():RemoveListener(EventType.ROLE_UP_LEVEL,self.refresh_ui)
+    PlayerModule:GetInstance():UnBind(PlayerModule.EventType.REFRESH_VIEW,self.refresh_ui)
 end
 
 function MainView:refreshUI(data)
@@ -39,7 +37,7 @@ function MainView:refreshUI(data)
 end
 
 function MainView:ClickRoleBtn()
-    UIManager.GetSingleton():OpenView(UIStyle.ROLE)
+    PlayerModule:GetInstance():Fire(PlayerModule.EventType.OPEN_ROLE_VIEW)
 end
 
 --测试Tips功能

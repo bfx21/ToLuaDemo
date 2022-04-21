@@ -1,6 +1,6 @@
 MonoSingleton:Class("UIManager")
 
-function UIManager:InitManager()
+function UIManager:Init()
     local canvas = ResourcesManager.Instance:Load("UI/Canvas",typeof(GameObject))
     ResourcesManager.Instance:Load("UI/EventSystem",typeof(GameObject))
     self.canvas = canvas.transform

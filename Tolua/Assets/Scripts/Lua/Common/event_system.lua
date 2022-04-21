@@ -1,13 +1,13 @@
 --处理并发性的事件系统
-Singleton:Sub("EventManager")
+Object:Sub("EventSystem")
 
-function EventManager:_init()
+function EventSystem:_init()
     self.listener_list ={}
     self.cache_event ={} --定义用来存储缓存的事件
     self.executing_dic = {} --定义该事件类型是否正在执行
 end
 
-function EventManager:AddListener(event_type,func)
+function EventSystem:AddListener(event_type,func)
     local event_list = self.listener_list[event_type]
     if event_list == nil then 
         event_list = {}
@@ -17,7 +17,7 @@ function EventManager:AddListener(event_type,func)
     table.insert(event_list,func)    
 end
 
-function EventManager:RemoveListener(event_type,func)
+function EventSystem:RemoveListener(event_type,func)
     local event_list = self.listener_list[event_type]
     if event_list == nil then
         return
@@ -40,7 +40,7 @@ function EventManager:RemoveListener(event_type,func)
     end
 end
 
-function EventManager:Trigger(event_type,data)
+function EventSystem:Trigger(event_type,data)
     local event_list = self.listener_list[event_type]
     if event_list == nil then
         return
