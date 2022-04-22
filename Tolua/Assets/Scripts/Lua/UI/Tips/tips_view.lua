@@ -8,12 +8,12 @@ local _cacheType =
 
 function TipsView:InitPanel()
     self.tips_prefab = Resources.Load("UI/TipsItem")
-    self.queue = Queue:New()
+    self.queue = Queue.New()
 end
 
 function TipsView:Update()
    if not self.queue:IsEmpty()then
-      self:createTips(self.queue:DeQueue())
+      self:_createTips(self.queue:DeQueue())
    end
 end
 
@@ -21,7 +21,7 @@ function TipsView:Show(txt)
    self.queue:EnQueue(txt) 
 end
 
-function TipsView:createTips(txt)
+function TipsView:_createTips(txt)
     local prefab = GameObject.Instantiate(self.tips_prefab)
     local text = Tools.FindChildComponent(prefab.transform,_cacheType.Txt_TIPS,typeof(Text))
     text.text = txt

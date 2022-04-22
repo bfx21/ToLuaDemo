@@ -1,6 +1,6 @@
 MonoSingleton:Class("UIManager")
 
-function UIManager:Init()
+function UIManager:_init()
     local canvas = ResourcesManager.Instance:Load("UI/Canvas",typeof(GameObject))
     ResourcesManager.Instance:Load("UI/EventSystem",typeof(GameObject))
     self.canvas = canvas.transform
@@ -32,7 +32,7 @@ function UIManager:OpenView(style,complete)
         local view_go = nil
         if view_config.async then
             local load_complete_handler = function (asset)
-                self:loadView(view_config,asset)
+                self:_loadView(view_config,asset)
                 if complete then
                     complete(self:GetView(view_config.id))
                 end
@@ -41,7 +41,7 @@ function UIManager:OpenView(style,complete)
             ResourcesManager.Instance:LoadAsync(view_config.path,typeof(GameObject),load_complete_handler)
         else
             view_go = ResourcesManager.Instance:Load(view_config.path,typeof(GameObject))
-            self:loadView(view_config,view_go)
+            self:_loadView(view_config,view_go)
 
             if complete then
                 complete(self:GetView(view_config.id))
@@ -59,7 +59,7 @@ function UIManager:CloseView(style)
         if UIConfig[style].cache then
             view.gameObject:SetActive(false)
         else
-            self:unloadView(style)
+            self:_unloadView(style)
         end
     end
 end
@@ -68,24 +68,24 @@ function UIManager:GetView(style)
     return self.views[style]
 end
 
-function UIManager:getLayer(layer_id)
+function UIManager:_getLayer(layer_id)
     return self.layers[layer_id]
 end
 
-function UIManager:loadView(view_config,view_go)
+function UIManager:_loadView(view_config,view_go)
     local view = view_config.ui_class:New()
     view:InitBehaviour(view_go)
     view:Open()
     self.views[view_config.id] =view
     
     local view_tran = view.transform
-    view_tran:SetParent(self:getLayer(view_config.layer),false)
+    view_tran:SetParent(self:_getLayer(view_config.layer),false)
     view_tran.localPosition = Vector3.zero
     view_tran.localScale = Vector3.one
 
 end
 
-function UIManager:unloadView(style)
+function UIManager:_unloadView(style)
     local view = self:GetView(style)
     GameObject.Destroy(view.gameObject)
     self.views[style] = nil

@@ -1,6 +1,7 @@
 require("namespace")
 
 --Common
+require("Common/class")
 require("Common/object")
 require("Common/unity_behaviour")
 require("Common/singleton")

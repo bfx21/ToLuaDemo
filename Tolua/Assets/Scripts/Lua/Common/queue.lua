@@ -1,7 +1,7 @@
 --通过lua实现队列数据结构
-Object:Sub("Queue")
+Queue = Queue or Class()
 
-function Queue:_init()
+function Queue:__init()
     self.list = {}
     self.count = 0
 end
