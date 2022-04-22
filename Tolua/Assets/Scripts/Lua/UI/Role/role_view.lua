@@ -44,7 +44,7 @@ function RoleView:ClickUpLevelBtn()
     PlayerModule:GetInstance():LevelUp()
 end
 
-function RoleView:refreshUI(data)
+function RoleView:_refreshUI(data)
     self:SetText(_cacheType.txt_attack,data.attack)
     self:SetText(_cacheType.txt_hp,data.hp)
     self:SetText(_cacheType.txt_defence,data.defence)

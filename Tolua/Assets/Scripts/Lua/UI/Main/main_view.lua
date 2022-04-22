@@ -29,7 +29,7 @@ function MainView:Close()
     PlayerModule:GetInstance():UnBind(PlayerModule.EventType.REFRESH_VIEW,self.refresh_ui)
 end
 
-function MainView:refreshUI(data)
+function MainView:_refreshUI(data)
     self:SetText(_cacheType.txt_diamond,data.diamond)
     self:SetText(_cacheType.txt_gold,data.gold)
     self:SetText(_cacheType.txt_name,data.name)
