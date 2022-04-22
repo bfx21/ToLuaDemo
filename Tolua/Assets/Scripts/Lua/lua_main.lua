@@ -13,7 +13,11 @@ function main()
 end
 
 function Test()
-
+    local callback =  function ()
+        print("事件测试")
+    end
+    EventManager.GetInstance():AddListener(1,callback)
+    EventManager.GetInstance():Trigger(1)
 end
 
 main()
