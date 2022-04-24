@@ -1,7 +1,7 @@
 --处理并发性的事件系统
 EventSystem = Class() or {}
-local _tableInsert = table.insert
-local _tableRemove = table.remove
+local _table_insert = table.insert
+local _table_remove = table.remove
 local _pairs = pairs
 local _ipairs = ipairs
 
@@ -18,7 +18,7 @@ function EventSystem:AddListener(event_type,func)
         self.listener_list[event_type] = event_list
     end
     
-    _tableInsert(event_list,func)    
+    _table_insert(event_list,func)    
 end
 
 function EventSystem:RemoveListener(event_type,func)
@@ -32,13 +32,13 @@ function EventSystem:RemoveListener(event_type,func)
         if not self.cache_event[event_type] then
             self.cache_event[event_type] = {}
         end
-        _tableInsert(self.cache_event[event_type],func)
+        _table_insert(self.cache_event[event_type],func)
         return
     end
 
     for index, value in _pairs(event_list) do
         if value == func then
-            _tableRemove(event_list,index)
+            _table_remove(event_list,index)
             return
         end
     end
@@ -62,7 +62,7 @@ function EventSystem:Trigger(event_type,data)
         for _,remove_event in _ipairs(cache_list) do
             for index,func in _ipairs(event_list) do
                 if remove_event == func then
-                    table.remove(event_list,index)
+                    _table_remove(event_list,index)
                     break
                 end 
             end 

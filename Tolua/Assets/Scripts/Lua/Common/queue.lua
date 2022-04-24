@@ -1,7 +1,7 @@
 --通过lua实现队列数据结构
 local Queue = Queue or Class()
-local _tableInsert = table.insert
-local _tableRemove = table.remove
+local _table_insert = table.insert
+local _table_remove = table.remove
 
 function Queue:__init()
     self.list = {}
@@ -11,7 +11,7 @@ end
 --入队
 function Queue:EnQueue(item)
     self.count = self.count +1
-    _tableInsert(self.list,item)
+    _table_insert(self.list,item)
 end
 
 --出队
@@ -22,7 +22,7 @@ function Queue:DeQueue()
 
     self.count = self.count - 1
     local item = self.list[1]
-    _tableRemove(self.list,1)
+    _table_remove(self.list,1)
 
     return item
 end

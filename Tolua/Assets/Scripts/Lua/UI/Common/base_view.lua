@@ -1,4 +1,5 @@
 BaseView = Class(UnityBehaviour) or {}
+local table_concat = table.concat
 
 function BaseView:__init()
      self.control_cache ={}
@@ -16,7 +17,7 @@ function BaseView:GetControl(name,type)
     local str = {}
     str[1] = name
     str[2] = type:ToString()
-    local control_name = table.concat( str, "_")
+    local control_name = table_concat( str, "_")
 
     if self.control_cache[control_name] == nil then
        local control = self:FindChildComponent(name,type)

@@ -1,4 +1,7 @@
 local EventLib = EventLib or Class(EventLib)
+local _ipairs = ipairs
+local _pairs = pairs
+local _table_insert = table.insert
 
 function EventLib:__init(event_name)
     self.handlers = {}
@@ -28,7 +31,7 @@ function EventLib:Remove(func)
     end
 
     if self.executing then
-        table.insert(self.wait_remove_list,func)
+        _table_insert(self.wait_remove_list,func)
     else
         self.handlers[func] = nil
     end
@@ -36,12 +39,12 @@ end
 
 function EventLib:Trigger(event_data)
     self.executing = true
-    for _,func in pairs(self.handlers) do
+    for _,func in _pairs(self.handlers) do
         func(event_data)
     end
     self.executing =false
     
-    for _,func in ipairs(self.wait_remove_list) do
+    for _,func in _ipairs(self.wait_remove_list) do
         self:Remove(func)
     end
 end
