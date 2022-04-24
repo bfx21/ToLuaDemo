@@ -11,7 +11,6 @@ require("Common/event_system")
 require("Common/event_lib")
 require("Common/event_manager")
 require("Common/event_dispatcher")
-require("Common/queue")
 
 --Module
 require("UI/Module/player_module")
@@ -19,10 +18,6 @@ require("UI/Module/player_module")
 --UI
 require("UI/Common/base_view")
 require("UI/Common/ui_manager")
-require("UI/Main/main_view")
-require("UI/Role/role_view")
-require("UI/Tips/tips_view")
-require("UI/Common/ui_config")
 
 --controller
 require("UI/Main/main_controller")

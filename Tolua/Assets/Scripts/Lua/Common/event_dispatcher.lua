@@ -1,7 +1,7 @@
-Object:Sub("EventDispatcher")
+EventDispatcher = Class() or {}
 
-function EventDispatcher:_init()
-    self.event_system = EventSystem:New()
+function EventDispatcher:__init()
+    self.event_system = EventSystem.New()
 end
 
 function EventDispatcher:Bind(event_type,func)

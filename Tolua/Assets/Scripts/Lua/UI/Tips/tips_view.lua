@@ -1,12 +1,13 @@
 --制作一个游戏的提示信息功能
-BaseView:Sub("TipsView")
+local TipsView = Class(BaseView) or {}
+local Queue = require("Common/queue")
 
 local _cacheType = 
 {
    Txt_TIPS = "TxtTips"
 }
 
-function TipsView:InitPanel()
+function TipsView:__init()
     self.tips_prefab = Resources.Load("UI/TipsItem")
     self.queue = Queue.New()
 end
@@ -40,3 +41,5 @@ function TipsView:_createTips(txt)
 
     coroutine.start(delay_func,prefab)
 end
+
+return TipsView

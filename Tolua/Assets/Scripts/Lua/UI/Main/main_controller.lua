@@ -1,10 +1,10 @@
-Singleton:Sub("MainController")
+MainController = Class(Singleton) or {}
 
-function MainController:_init()
+function MainController:__init()
     self.module = PlayerModule:GetInstance()
     
     local function opMainView()
-        UIManager.GetSingleton():OpenView(UIStyle.MAIN)
+        UIManager.GetInstance():OpenView(UIStyle.MAIN)
         self.module:RefreshView()
     end
     

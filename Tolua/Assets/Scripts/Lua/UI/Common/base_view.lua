@@ -1,11 +1,7 @@
-UnityBehaviour:Sub("BaseView")
+BaseView = Class(UnityBehaviour) or {}
 
-function BaseView:Init()
+function BaseView:__init()
      self.control_cache ={}
-
-     if self.InitPanel ~= nil then
-         self:InitPanel()
-     end
 end
 
 function BaseView:Open()
@@ -54,3 +50,5 @@ function BaseView:AddBtnEvent(name,event)
     local button = self:GetControl(name,typeof(Button))
     button.onClick:AddListener(event)
 end
+
+return BaseView

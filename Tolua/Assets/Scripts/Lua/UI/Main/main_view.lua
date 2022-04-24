@@ -1,4 +1,4 @@
-BaseView:Sub("MainView")
+local MainView = Class(BaseView) or {}
 
 local _cacheType =
 {
@@ -11,7 +11,7 @@ local _cacheType =
    txt_power = "TxtPower",
 }
 
-function MainView:InitPanel()
+function MainView:__init()
     self:AddBtnEvent(_cacheType.btn_role,function() self:ClickRoleBtn() end)
     self:AddBtnEvent(_cacheType.btn_test,function() self:ClickTestBtn() end)
 end
@@ -21,7 +21,7 @@ function MainView:Start()
 end
 
 function MainView:Open()
-    self.refresh_ui = function(data) self:refreshUI(data) end
+    self.refresh_ui = function(data) self:_refreshUI(data) end
     PlayerModule:GetInstance():Bind(PlayerModule.EventType.REFRESH_VIEW,self.refresh_ui)
 end
 
@@ -42,8 +42,9 @@ end
 
 --测试Tips功能
 function MainView:ClickTestBtn()
-    UIManager.GetSingleton():OpenView(UIStyle.TIPS,function(view) 
+    UIManager.GetInstance():OpenView(UIStyle.TIPS,function(view) 
        view:Show("测试游戏提示信息功能")
     end)
 end
 
+return MainView

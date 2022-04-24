@@ -1,14 +1,13 @@
-UnityBehaviour:Sub("MonoSingleton")
+MonoSingleton = Class(UnityBehaviour) or {}
 
-function MonoSingleton:Class(name)
-    self:Sub(name)
-    _G[name].GetSingleton = function ()
-        if _G[name].instance == nil then
-            _G[name].instance = _G[name]:New()
-            local go = GameObject(name)
+function MonoSingleton:__init()
+    self.GetSingleton = function ()
+        if self.instance == nil then
+            self.instance = self.New()
+            local go = GameObject("manager")
             --go.transform.parent = System.transform
-            _G[name].instance:InitBehaviour(go) 
+            self.instance:InitBehaviour(go) 
         end
-        return  _G[name].instance
+        return  self.instance
     end
 end

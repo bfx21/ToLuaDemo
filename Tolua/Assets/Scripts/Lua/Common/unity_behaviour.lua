@@ -1,8 +1,9 @@
-Object:Sub("UnityBehaviour")
+UnityBehaviour = Class() or {}
 
-function UnityBehaviour:InitBehaviour(go)
-    self.gameObject = go
-    self.transform = go.transform
+function UnityBehaviour:__init(...)
+    local arg = {...}
+    self.gameObject = arg[1]
+    self.transform = self.gameObject.transform
     local behaviour = self.gameObject:AddComponent(typeof(LuaBehaviour))
 
     if self.Init ~= nil then
@@ -72,3 +73,5 @@ function UnityBehaviour:FindChildComponent(childName,type)
 function UnityBehaviour:Destroy()
     GameObject.Destroy(self.gameObject)
 end
+
+return UnityBehaviour

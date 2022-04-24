@@ -1,4 +1,4 @@
-EventDispatcher:Sub("PlayerModule")
+PlayerModule = Class(EventDispatcher) or {}
 
 PlayerModule.EventType = 
 {
@@ -8,17 +8,15 @@ PlayerModule.EventType =
      REFRESH_VIEW = "REFRESH_VIEW",
 }
 
-function PlayerModule:GetInstance()
-     if self.instance == nil then
-          self.instance = PlayerModule:New()
+function PlayerModule.GetInstance()
+     if PlayerModule.instance == nil then
+          PlayerModule.instance = PlayerModule:New()
      end
 
-     return self.instance
+     return PlayerModule.instance
 end
 
-function PlayerModule:_init()
-    self.base:_init()
-
+function PlayerModule:__init()
     self.name = "bfx"
     self.gold = 500
     self.diamond = 1000

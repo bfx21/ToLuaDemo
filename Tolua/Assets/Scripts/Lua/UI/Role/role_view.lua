@@ -1,4 +1,4 @@
-BaseView:Sub("RoleView")
+local RoleView = Class(BaseView) or {}
 
 local _cacheType = 
 {
@@ -13,7 +13,7 @@ local _cacheType =
    txt_luck = "txtLuck",
 }
 
-function RoleView:InitPanel()
+function RoleView:__init()
     self:AddBtnEvent(_cacheType.btn_close,function() self:ClickCloseBtn() end)
     self:AddBtnEvent(_cacheType.btn_up_level,function() self:ClickUpLevelBtn() end)
 end
@@ -31,7 +31,7 @@ function RoleView:OnDisable()
 end
 
 function RoleView:Open()
-    self.refresh_ui = function(data) self:refreshUI(data) end
+    self.refresh_ui = function(data) self:_refreshUI(data) end
     PlayerModule:GetInstance():Bind(PlayerModule.EventType.REFRESH_VIEW,self.refresh_ui)
 
 end
@@ -59,3 +59,5 @@ end
 function RoleView:ClickCloseBtn()
     PlayerModule:GetInstance():Fire(PlayerModule.EventType.CLOSE_ROLE_VIEW)
 end
+
+return RoleView

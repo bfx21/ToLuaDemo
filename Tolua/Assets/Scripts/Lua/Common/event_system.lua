@@ -1,7 +1,11 @@
 --处理并发性的事件系统
-Object:Sub("EventSystem")
+EventSystem = Class() or {}
+local _tableInsert = table.insert
+local _tableRemove = table.remove
+local _pairs = pairs
+local _ipairs = ipairs
 
-function EventSystem:_init()
+function EventSystem:__init()
     self.listener_list ={}
     self.cache_event ={} --定义用来存储缓存的事件
     self.executing_dic = {} --定义该事件类型是否正在执行
@@ -14,7 +18,7 @@ function EventSystem:AddListener(event_type,func)
         self.listener_list[event_type] = event_list
     end
     
-    table.insert(event_list,func)    
+    _tableInsert(event_list,func)    
 end
 
 function EventSystem:RemoveListener(event_type,func)
@@ -28,13 +32,13 @@ function EventSystem:RemoveListener(event_type,func)
         if not self.cache_event[event_type] then
             self.cache_event[event_type] = {}
         end
-        table.insert(self.cache_event[event_type],func)
+        _tableInsert(self.cache_event[event_type],func)
         return
     end
 
-    for index, value in pairs(event_list) do
+    for index, value in _pairs(event_list) do
         if value == func then
-            table.remove(event_list,index)
+            _tableRemove(event_list,index)
             return
         end
     end
@@ -47,7 +51,7 @@ function EventSystem:Trigger(event_type,data)
     end
     
     self.executing_dic[event_type] = true
-    for _,func in ipairs(event_list) do
+    for _,func in _ipairs(event_list) do
         func(data)
     end
     self.executing_dic[event_type] = false
@@ -55,8 +59,8 @@ function EventSystem:Trigger(event_type,data)
     --处理缓存的移除操作
      local cache_list = self.cache_event[event_type]   
      if cache_list then
-        for _,remove_event in ipairs(cache_list) do
-            for index,func in ipairs(event_list) do
+        for _,remove_event in _ipairs(cache_list) do
+            for index,func in _ipairs(event_list) do
                 if remove_event == func then
                     table.remove(event_list,index)
                     break

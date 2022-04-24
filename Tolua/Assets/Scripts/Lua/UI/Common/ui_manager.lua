@@ -1,6 +1,14 @@
-MonoSingleton:Class("UIManager")
+UIManager = Class() or {}
+local _UIConfig = require("UI/Common/ui_config")
 
-function UIManager:_init()
+function UIManager.GetInstance()
+    if UIManager.instance == nil then
+        UIManager.instance = UIManager.New()
+    end
+    return UIManager.instance
+end
+
+function UIManager:__init()
     local canvas = ResourcesManager.Instance:Load("UI/Canvas",typeof(GameObject))
     ResourcesManager.Instance:Load("UI/EventSystem",typeof(GameObject))
     self.canvas = canvas.transform
@@ -28,7 +36,7 @@ function UIManager:OpenView(style,complete)
             complete(view)
         end
     else
-        local view_config = UIConfig[style]
+        local view_config = _UIConfig[style]
         local view_go = nil
         if view_config.async then
             local load_complete_handler = function (asset)
@@ -56,7 +64,7 @@ function UIManager:CloseView(style)
     view:Close()
 
     if view ~= nil then
-        if UIConfig[style].cache then
+        if _UIConfig[style].cache then
             view.gameObject:SetActive(false)
         else
             self:_unloadView(style)
@@ -73,8 +81,7 @@ function UIManager:_getLayer(layer_id)
 end
 
 function UIManager:_loadView(view_config,view_go)
-    local view = view_config.ui_class:New()
-    view:InitBehaviour(view_go)
+    local view = view_config.ui_class.New(view_go)
     view:Open()
     self.views[view_config.id] =view
     
@@ -89,5 +96,6 @@ function UIManager:_unloadView(style)
     local view = self:GetView(style)
     GameObject.Destroy(view.gameObject)
     self.views[style] = nil
-    Resources.UnloadUnusedAssets()
 end
+
+return UIManager
