@@ -8,7 +8,6 @@ require("Common/singleton")
 require("Common/mono_singleton")
 require("Common/event_type")
 require("Common/event_system")
-require("Common/event_lib")
 require("Common/event_manager")
 require("Common/event_dispatcher")
 

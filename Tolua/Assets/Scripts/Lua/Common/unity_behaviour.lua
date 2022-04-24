@@ -5,11 +5,7 @@ function UnityBehaviour:__init(...)
     self.gameObject = arg[1]
     self.transform = self.gameObject.transform
     local behaviour = self.gameObject:AddComponent(typeof(LuaBehaviour))
-
-    if self.Init ~= nil then
-        self:Init()
-    end
-
+    
     if self.Awake ~= nil then
         behaviour.AwakeAction = function() self:Awake() end
     end

@@ -1,5 +1,6 @@
 --处理并发性的事件系统
 EventManager = EventManager or Class(EventManager)
+local EventLib = require("Common/event_lib")
 
 function EventManager:__init()
     self.event_list ={}

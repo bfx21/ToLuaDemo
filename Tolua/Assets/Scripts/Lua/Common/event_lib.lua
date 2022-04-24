@@ -1,4 +1,4 @@
-EventLib = EventLib or Class(EventLib)
+local EventLib = EventLib or Class(EventLib)
 
 function EventLib:__init(event_name)
     self.handlers = {}
@@ -51,3 +51,5 @@ function EventLib:Clear()
     self.wait_remove_list = {}
     self.executing = false
 end
+
+return EventLib

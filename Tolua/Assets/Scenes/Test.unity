@@ -382,6 +382,7 @@ GameObject:
   - component: {fileID: 223036588360719786}
   - component: {fileID: 114021833572211272}
   - component: {fileID: 114137877162624458}
+  - component: {fileID: 1833745486428953}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -389,6 +390,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!225 &1833745486428953
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833745486428952}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1849615397032144
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,3 +724,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08fb88a342c4d214695aa7323b3d8eb3, type: 3}
+--- !u!1 &3149806607239509996 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3149806607793730298, guid: 08fb88a342c4d214695aa7323b3d8eb3, type: 3}
+  m_PrefabInstance: {fileID: 3149806607239509995}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &3149806607239509997
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3149806607239509996}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
